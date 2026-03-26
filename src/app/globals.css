@@ -1,0 +1,86 @@
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Dark (default) ─────────────────────────────────────────────── */
+:root {
+  --bg:        #09090f;
+  --bg2:       #0f1117;
+  --bg3:       #161b24;
+  --border:    rgba(255,255,255,0.07);
+  --border2:   rgba(255,255,255,0.14);
+  --text:      #e2e8f0;
+  --muted:     #64748b;
+  --dim:       #2d3748;
+
+  --gl:        #3b82f6;
+  --coa:       #8b5cf6;
+  --period:    #06b6d4;
+  --party:     #f59e0b;
+  --client:    #10b981;
+  --supplier:  #f97316;
+  --ugl:       #a78bfa;
+  --payment:   #ec4899;
+  --rule:      #84cc16;
+
+  --font-sans: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+/* ── Sage Mist ──────────────────────────────────────────────────── */
+[data-theme="sage"] {
+  --bg:        #f0fdf4;
+  --bg2:       #ffffff;
+  --bg3:       #d8f3e5;
+  --border:    rgba(45,125,90,0.10);
+  --border2:   rgba(45,125,90,0.22);
+  --text:      #1a2e1f;
+  --muted:     #4d7a60;
+  --dim:       #a8d5bb;
+
+  --gl:        #16a34a;
+  --coa:       #0d9488;
+  --period:    #0284c7;
+  --party:     #d97706;
+  --client:    #059669;
+  --supplier:  #ea580c;
+  --ugl:       #7c3aed;
+  --payment:   #db2777;
+  --rule:      #65a30d;
+}
+
+/* ── Arctic White ───────────────────────────────────────────────── */
+[data-theme="arctic"] {
+  --bg:        #f8fafc;
+  --bg2:       #ffffff;
+  --bg3:       #f1f5f9;
+  --border:    rgba(15,23,42,0.07);
+  --border2:   rgba(15,23,42,0.13);
+  --text:      #0f172a;
+  --muted:     #64748b;
+  --dim:       #e2e8f0;
+
+  --gl:        #2563eb;
+  --coa:       #7c3aed;
+  --period:    #0891b2;
+  --party:     #d97706;
+  --client:    #059669;
+  --supplier:  #ea580c;
+  --ugl:       #6d28d9;
+  --payment:   #db2777;
+  --rule:      #65a30d;
+}
+
+html, body { height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track  { background: var(--bg2); }
+::-webkit-scrollbar-thumb  { background: var(--dim); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+button { font-family: var(--font-sans); cursor: pointer; }
+a { color: inherit; text-decoration: none; }

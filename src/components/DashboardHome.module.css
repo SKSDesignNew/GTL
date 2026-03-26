@@ -1,0 +1,154 @@
+.home {
+  height: 100%;
+  overflow-y: auto;
+  background: var(--bg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* KPI strip */
+.kpiStrip {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 10px;
+  flex-shrink: 0;
+}
+.kpiCard {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  transition: border-color .15s;
+}
+.kpiCard:hover { border-color: var(--border2); }
+.kpiIcon { font-size: 18px; margin-bottom: 6px; }
+.kpiVal  { font-family: var(--font-mono); font-size: 20px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+.kpiLabel { font-size: 12px; font-weight: 500; color: var(--text); margin-bottom: 2px; }
+.kpiSub   { font-size: 10px; color: var(--muted); }
+
+/* Main grid */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 14px;
+  flex: 1;
+  min-height: 0;
+}
+
+.card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.cardWide { grid-column: 1 / -1; }
+.cardActions { grid-column: 1 / -1; }
+
+.cardHeader { margin-bottom: 14px; }
+.cardTitle { font-size: 13px; font-weight: 600; }
+.cardSub   { font-size: 11px; color: var(--muted); margin-top: 2px; font-family: var(--font-mono); }
+
+/* Cash flow chart */
+.cashChart {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 120px;
+  position: relative;
+  padding-bottom: 28px;
+}
+.cashCol {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+.cashBars {
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  gap: 2px;
+  width: 100%;
+}
+.cashBar {
+  flex: 1;
+  border-radius: 2px 2px 0 0;
+  min-height: 2px;
+  transition: height .3s ease;
+  cursor: default;
+}
+.cashBar:hover { opacity: .8; }
+.cashLabel {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+.cashNet { font-size: 9px; margin-top: 1px; }
+.cashLegend {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  gap: 12px;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+/* Category list */
+.catList { display: flex; flex-direction: column; gap: 8px; flex: 1; justify-content: center; }
+.catRow { display: flex; align-items: center; gap: 8px; }
+.catName {
+  display: flex; align-items: center; gap: 5px;
+  font-size: 11px; width: 90px; flex-shrink: 0; font-weight: 500;
+}
+.catDot { width: 7px; height: 7px; border-radius: 50%; flex-shrink: 0; }
+.catBarWrap { flex: 1; height: 6px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+.catBar { height: 100%; border-radius: 3px; transition: width .4s ease; }
+.catPct { font-family: var(--font-mono); font-size: 10px; color: var(--muted); width: 28px; text-align: right; }
+.catCnt { font-family: var(--font-mono); font-size: 10px; color: var(--dim); width: 36px; text-align: right; }
+
+/* Rank list */
+.rankList { display: flex; flex-direction: column; gap: 7px; flex: 1; overflow-y: auto; }
+.rankRow  { display: flex; align-items: center; gap: 8px; }
+.rankNum  { font-family: var(--font-mono); font-size: 10px; color: var(--dim); width: 14px; text-align: right; flex-shrink: 0; }
+.rankName { font-size: 11px; width: 130px; flex-shrink: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.rankBarWrap { flex: 1; height: 5px; background: var(--bg3); border-radius: 3px; overflow: hidden; }
+.rankBar  { height: 100%; border-radius: 3px; transition: width .4s ease; }
+.rankVal  { font-family: var(--font-mono); font-size: 11px; font-weight: 600; width: 70px; text-align: right; flex-shrink: 0; }
+
+/* Action grid */
+.actionGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.actionBtn {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  padding: 14px;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: left;
+  transition: all .15s;
+  font-family: var(--font-sans);
+}
+.actionBtn:hover {
+  border-color: var(--ac, #3b82f6);
+  background: color-mix(in srgb, var(--ac, #3b82f6) 8%, var(--bg3));
+  transform: translateY(-1px);
+}
+.actionIcon  { font-size: 20px; }
+.actionLabel { font-size: 12px; font-weight: 600; color: var(--text); }
+.actionSub   { font-size: 10px; color: var(--muted); }

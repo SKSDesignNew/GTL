@@ -1,0 +1,29 @@
+.wrap { padding:20px; overflow-y:auto; height:100%; display:flex; flex-direction:column; gap:16px; }
+.header { display:flex; align-items:flex-start; justify-content:space-between; }
+.title { font-size:16px; font-weight:700; }
+.sub   { font-size:11px; color:var(--muted); font-family:var(--font-mono); margin-top:2px; }
+.verdict { text-align:right; }
+.verdictLabel { font-size:10px; color:var(--muted); text-transform:uppercase; letter-spacing:.06em; margin-bottom:4px; }
+.verdictBadge { font-size:12px; font-weight:700; padding:4px 12px; border-radius:20px; border:1px solid; display:inline-block; }
+
+.explainer { font-size:12px; color:var(--muted); line-height:1.6; background:var(--bg3); border:1px solid var(--border); border-radius:8px; padding:12px 14px; }
+
+.loading { display:flex; align-items:center; justify-content:center; height:200px; }
+.spinner { width:24px; height:24px; border:3px solid var(--border2); border-top-color:#10b981; border-radius:50%; animation:spin .7s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
+
+.chart { display:flex; flex-direction:column; gap:8px; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:16px; }
+.digitRow { display:flex; align-items:center; gap:10px; }
+.digitLabel { font-family:var(--font-mono); font-size:16px; font-weight:700; width:16px; text-align:center; flex-shrink:0; color:var(--text); }
+.bars { flex:1; display:flex; flex-direction:column; gap:3px; }
+.barWrap { height:10px; background:var(--bg3); border-radius:3px; overflow:hidden; }
+.barExpected { height:100%; background:#475569; border-radius:3px; transition:width .4s ease; }
+.barActual   { height:100%; border-radius:3px; transition:width .4s ease; }
+.pcts { display:flex; gap:8px; width:130px; flex-shrink:0; font-family:var(--font-mono); font-size:10px; }
+.pctExpected { color:var(--muted); width:38px; }
+.pctActual   { font-weight:600; width:38px; }
+.deviation   { width:38px; font-weight:600; }
+.riskBadge { font-size:9px; font-weight:600; padding:2px 6px; border-radius:8px; border:1px solid; flex-shrink:0; width:52px; text-align:center; }
+.count { font-family:var(--font-mono); font-size:10px; color:var(--dim); width:70px; text-align:right; flex-shrink:0; }
+.legend { display:flex; gap:14px; justify-content:center; padding-top:8px; border-top:1px solid var(--border); margin-top:4px; font-size:10px; color:var(--muted); flex-wrap:wrap; }
+.legendDot { width:8px; height:8px; border-radius:50%; display:inline-block; margin-right:4px; }
