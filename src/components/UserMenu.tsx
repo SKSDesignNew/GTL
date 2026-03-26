@@ -1,8 +1,8 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { createClient } from '@/lib/supabase/client';
-import { useRouter } from 'next/navigation';
+- import { createClient } from '@/lib/supabase/client';
++ import { createClient } from '@/utils/supabase/client';
 import styles from './UserMenu.module.css';
 
 type Theme = 'dark' | 'sage' | 'arctic';
