@@ -2,21 +2,24 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { createClient } from '@/lib/supabase';
+import { useRouter } from 'next/navigation';
 import styles from './UserMenu.module.css';
 
 type Theme = 'dark' | 'sage' | 'arctic';
 
 const THEMES: { id: Theme; label: string; swatch: string }[] = [
-  { id: 'dark',   label: 'Dark',        swatch: '#09090f' },
-  { id: 'sage',   label: 'Sage Mist',   swatch: '#d8f3e5' },
+  { id: 'dark',   label: 'Dark',         swatch: '#09090f' },
+  { id: 'sage',   label: 'Sage Mist',    swatch: '#d8f3e5' },
   { id: 'arctic', label: 'Arctic White', swatch: '#f1f5f9' },
 ];
 
 interface UserMenuProps {
   email: string;
+  name?: string;
+  onSignOut?: () => Promise<void>;
 }
 
-export default function UserMenu({ email }: UserMenuProps) {
+export default function UserMenu({ email, name, onSignOut }: UserMenuProps) {
   const [open, setOpen]           = useState(false);
   const [showTheme, setShowTheme] = useState(false);
   const [theme, setTheme]         = useState<Theme>('dark');
@@ -61,11 +64,17 @@ export default function UserMenu({ email }: UserMenuProps) {
   }
 
   async function handleSignOut() {
-    await supabase.auth.signOut();
-    router.push('/login');
+    if (onSignOut) {
+      await onSignOut();
+    } else {
+      await supabase.auth.signOut();
+      router.push('/login');
+    }
   }
 
-  const initials = email
+  const initials = name
+    ? name.slice(0, 2).toUpperCase()
+    : email
     ? email.slice(0, 2).toUpperCase()
     : 'AQ';
 
@@ -89,6 +98,7 @@ export default function UserMenu({ email }: UserMenuProps) {
         <div className={styles.dropdown}>
           {/* User info */}
           <div className={styles.userInfo}>
+            {name && <span className={styles.userName}>{name}</span>}
             <span className={styles.userEmail}>{email}</span>
           </div>
 
@@ -106,7 +116,7 @@ export default function UserMenu({ email }: UserMenuProps) {
             </span>
           </button>
 
-          {/* Theme picker — conditionally rendered, NO display:none needed */}
+          {/* Theme picker — React conditional render, no CSS display:none */}
           {showTheme && (
             <div className={styles.themeSection}>
               {THEMES.map(t => (
