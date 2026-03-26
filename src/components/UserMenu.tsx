@@ -10,39 +10,33 @@ interface Props {
 
 type Theme = 'dark' | 'sage' | 'arctic'
 
-const THEMES: { id: Theme; label: string; bg: string; accent: string }[] = [
-  { id: 'dark',   label: 'Dark',         bg: '#0f1117', accent: '#3b82f6' },
-  { id: 'sage',   label: 'Sage Mist',    bg: '#f0fdf4', accent: '#16a34a' },
-  { id: 'arctic', label: 'Arctic White', bg: '#f8fafc', accent: '#2563eb' },
+const THEMES: { id: Theme; label: string; bg: string; dot: string }[] = [
+  { id: 'dark',   label: 'Dark',         bg: '#09090f', dot: '#3b82f6' },
+  { id: 'sage',   label: 'Sage Mist',    bg: '#f0fdf4', dot: '#16a34a' },
+  { id: 'arctic', label: 'Arctic White', bg: '#f8fafc', dot: '#2563eb' },
 ]
 
-function getActiveTheme(): Theme {
-  if (typeof window === 'undefined') return 'dark'
-  const t = localStorage.getItem('aq-theme')
-  if (t === 'sage' || t === 'arctic') return t
-  return 'dark'
+function getTheme(): Theme {
+  try { return (localStorage.getItem('aq-theme') as Theme) || 'dark' } catch { return 'dark' }
 }
 
-function applyTheme(theme: Theme) {
-  try {
-    if (theme === 'dark') {
-      document.documentElement.removeAttribute('data-theme')
-      localStorage.removeItem('aq-theme')
-    } else {
-      document.documentElement.setAttribute('data-theme', theme)
-      localStorage.setItem('aq-theme', theme)
-    }
-  } catch(e) {}
+function setTheme(t: Theme) {
+  try { localStorage.setItem('aq-theme', t) } catch {}
+  if (t === 'dark') {
+    document.documentElement.removeAttribute('data-theme')
+  } else {
+    document.documentElement.setAttribute('data-theme', t)
+  }
 }
 
 export default function UserMenu({ name, email, onSignOut }: Props) {
   const [open,    setOpen]    = useState(false)
   const [confirm, setConfirm] = useState(false)
-  const [theme,   setTheme]   = useState<Theme>('dark')
+  const [theme,   setThemeState] = useState<Theme>('dark')
   const ref = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    setTheme(getActiveTheme())
+    setThemeState(getTheme())
   }, [])
 
   useEffect(() => {
@@ -57,7 +51,7 @@ export default function UserMenu({ name, email, onSignOut }: Props) {
 
   function handleTheme(t: Theme) {
     setTheme(t)
-    applyTheme(t)
+    setThemeState(t)
   }
 
   return (
@@ -92,8 +86,8 @@ export default function UserMenu({ name, email, onSignOut }: Props) {
                   onClick={() => handleTheme(t.id)}
                   title={t.label}
                 >
-                  <span className={styles.themeSwatch} style={{ background: t.bg, borderColor: t.accent }}>
-                    <span className={styles.themeSwatchDot} style={{ background: t.accent }} />
+                  <span className={styles.themeSwatch} style={{ background: t.bg, border: t.id === 'dark' ? '1px solid #334155' : '1px solid #e2e8f0' }}>
+                    <span className={styles.themeSwatchDot} style={{ background: t.dot }} />
                   </span>
                   <span className={styles.themeBtnLabel}>{t.label}</span>
                   {theme === t.id && <span className={styles.themeCheck}>✓</span>}
@@ -103,9 +97,6 @@ export default function UserMenu({ name, email, onSignOut }: Props) {
           </div>
 
           <div className={styles.dropDivider} />
-          <div className={styles.dropItem} onClick={() => {}}>
-            <span>⚙</span> Settings
-          </div>
           <div className={styles.dropItem} onClick={() => {}}>
             <span>?</span> Help
           </div>

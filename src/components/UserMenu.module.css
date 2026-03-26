@@ -63,3 +63,64 @@
   color: var(--muted);
   font-weight: 600;
 }
+
+/* ── Theme switcher ───────────────────────────────────────────── */
+.themeSection {
+  padding: 10px 14px 8px;
+}
+.themeLabel {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+.themeOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+.themeBtn {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  width: 100%;
+  padding: 6px 8px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  cursor: pointer;
+  font-family: var(--font-sans);
+  color: var(--text);
+  transition: background .1s, border-color .1s;
+  text-align: left;
+}
+.themeBtn:hover { background: var(--bg3); }
+.themeBtnActive {
+  background: var(--bg3);
+  border-color: var(--border2);
+}
+.themeSwatch {
+  width: 26px;
+  height: 18px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.themeSwatchDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+.themeBtnLabel {
+  flex: 1;
+  font-size: 12px;
+}
+.themeCheck {
+  font-size: 11px;
+  color: var(--gl);
+  font-weight: 600;
+}
